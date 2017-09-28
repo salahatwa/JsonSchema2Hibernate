@@ -1,0 +1,124 @@
+{
+	"description": "A representation of a person, company, organization, or place",
+	"type": "object",
+	"javaType": "Product",
+	"properties": {
+		"id": {
+			"type": "integer",
+			"autoIncrementUniqueColumn": true
+		},
+		"fn": {
+			"description": "Formatted Name",
+			"type": "string"
+		},
+		"familyName": {
+			"type": "string",
+			"required": true
+		},
+		"givenName": {
+			"type": "string",
+			"required": true
+		},
+		"additionalName": {
+			"type": "array",
+			"items": {
+				"type": "string"
+			}
+		},
+		"honorificPrefix": {
+			"type": "array",
+			"items": {
+				"type": "string"
+			}
+		},
+		"honorificSuffix": {
+			"type": "array",
+			"items": {
+				"type": "string"
+			}
+		},
+		"nickname": {
+			"type": "string"
+		},
+		"url": {
+			"type": "string",
+			"format": "url"
+		},
+		"productType": {
+			"type": "array",
+			"MTM": "id::type_id",
+			"items": {
+				"$ref": "#/definitions/product-type"
+			}
+		},
+		"tel": {
+			"type": "object",
+			"javaType": "Tel",
+			"properties": {
+				"type": {
+					"type": "string"
+				},
+				"value": {
+					"type": "string",
+					"format": "phone"
+				}
+			}
+		},
+		"tz": {
+			"type": "string"
+		},
+		"photo": {
+			"format": "image",
+			"type": "string"
+		},
+		"logo": {
+			"format": "image",
+			"type": "string"
+		},
+		"sound": {
+			"format": "attachment",
+			"type": "string"
+		},
+		"bday": {
+			"type": "string",
+			"format": "date"
+		},
+		"title": {
+			"type": "string"
+		},
+		"role": {
+			"type": "string"
+		},
+		"org": {
+			"type": "object",
+			"javaType": "Org",
+			"properties": {
+				"organizationName": {
+					"type": "string"
+				},
+				"organizationUnit": {
+					"type": "string"
+				}
+			}
+		}
+	},
+	"definitions": {
+		"product-type": {
+			"title": "Product Type",
+			"type": "object",
+			"javaType": "ProductType",
+			"properties": {
+				"type_id": {
+					"type": "integer",
+					"autoIncrementUniqueColumn": true
+				},
+				"type": {
+					"type": "string"
+				},
+				"price": {
+					"type": "integer"
+				}
+			}
+		}
+	}
+}
